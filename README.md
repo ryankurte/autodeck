@@ -1,6 +1,6 @@
 # Autodeck
 
-A simple automation daemon designed to interact with Elgato Stream Deck devices. See [example.toml](./example.toml) for a set of example automations, and the [docs](https://docs.rs/autodeck) for further information on automation options.
+A simple automation daemon for linux, designed to interact with Elgato Stream Deck devices. See [example.toml](./example.toml) for a set of example automations, and the [docs](https://docs.rs/autodeck) for further information on automation options.
 
 
 ## Status
