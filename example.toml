@@ -1,0 +1,94 @@
+
+# An example automata that always succeeds
+[[automata]]
+state = "stopped"
+
+[automata.states.stopped]
+on_press = { func = "./scripts/success.sh", on_success = "running", on_error = "error" }
+display = { mode = "Colour", r = 0, g = 0, b = 255 }
+
+[automata.states.running]
+on_press = { on_success = "stopped" }
+display = { mode = "Colour", r = 0, g = 255, b = 0 }
+
+[automata.states.error]
+on_press = { on_success = "stopped" }
+display = { mode = "Colour", r = 255, g = 0, b = 0 }
+
+
+# An example automata that always fails
+[[automata]]
+state = "stopped"
+
+[automata.states.stopped]
+on_press = { func = "./scripts/failure.sh", on_success = "running", on_error = "error" }
+display = { mode = "Colour", r = 0, g = 0, b = 255 }
+
+[automata.states.running]
+on_press = { on_success = "stopped" }
+display = { mode = "Colour", r = 0, g = 255, b = 0 }
+
+[automata.states.error]
+on_press = { on_success = "stopped" }
+display = { mode = "Colour", r = 255, g = 0, b = 0 }
+
+# An example automata that sometimes does either
+[[automata]]
+state = "stopped"
+
+[automata.states.stopped]
+on_press = { func = "./scripts/sometimes.sh", on_success = "running", on_error = "error" }
+display = { mode = "Colour", r = 0, g = 0, b = 255 }
+
+[automata.states.running]
+on_press = { on_success = "stopped" }
+display = { mode = "Colour", r = 0, g = 255, b = 0 }
+
+[automata.states.error]
+on_press = { on_success = "stopped" }
+display = { mode = "Colour", r = 255, g = 0, b = 0 }
+
+# An example automata that launches into a state at startup
+[[automata]]
+state = "init"
+on_init = { func = "./scripts/sometimes.sh", on_success = "okay", on_error = "error" }
+
+[automata.states.init]
+display = { mode = "Colour", r = 0, g = 0, b = 0 }
+
+[automata.states.okay]
+display = { mode = "Colour", r = 0, g = 255, b = 0 }
+
+[automata.states.error]
+display = { mode = "Colour", r = 255, g = 0, b = 0 }
+
+
+# An example automata that updates it's state at runtime
+[[automata]]
+state = "init"
+on_init = { func = "./scripts/sometimes.sh", on_success = "okay", on_error = "error" }
+
+[automata.states.init]
+display = { mode = "Colour", r = 0, g = 0, b = 0 }
+
+[automata.states.okay]
+on_poll = { func = "./scripts/sometimes.sh", on_success = "okay", on_error = "error" }
+display = { mode = "Colour", r = 0, g = 255, b = 0 }
+
+[automata.states.error]
+on_poll = { func = "./scripts/sometimes.sh", on_success = "okay", on_error = "error" }
+display = { mode = "Colour", r = 255, g = 0, b = 0 }
+
+
+# An example automata that parses state from stdout using filters
+[[automata]]
+state = "one"
+
+[automata.states.one]
+on_press = { func = "./scripts/sometimes-stdout.sh", success_filter = "ok", on_success = "one", on_failure = "two" }
+display = { mode = "Colour", r = 0, g = 255, b = 0 }
+
+[automata.states.two]
+on_press = { func = "./scripts/sometimes-stdout.sh", failure_filter = "error", on_success = "one", on_failure = "two" }
+display = { mode = "Colour", r = 255, g = 0, b = 0 }
+
