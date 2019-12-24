@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use std::process::{Command};
 
 use serde::{Serialize, Deserialize};
-use streamdeck::{StreamDeck};
+use streamdeck::{StreamDeck, Colour, ImageOptions};
 
 use crate::Error;
 
@@ -124,7 +124,13 @@ pub struct State {
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(tag = "mode")]
 pub enum Display {
-    Colour{r: u8, g: u8, b: u8},
+    Colour(Colour),
+    Image{
+        file: String, 
+
+        #[serde(flatten)]
+        options: ImageOptions
+    },
 }
 
 impl Display {
@@ -133,8 +139,9 @@ impl Display {
         debug!("Updating display index: {} config: {:?}", index, self);
 
         match self {
-            Display::Colour{r, g, b} => deck.set_button_rgb(index, *r, *g, *b).map_err(Error::Deck)?,
-        }
+            Display::Colour(colour) => deck.set_button_rgb(index, colour),
+            Display::Image{file, options} => deck.set_button_file(index, file, options),
+        }.map_err(Error::Deck)?;
 
         Ok(())
     }

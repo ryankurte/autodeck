@@ -5,15 +5,15 @@ state = "stopped"
 
 [automata.states.stopped]
 on_press = { func = "./scripts/success.sh", on_success = "running", on_error = "error" }
-display = { mode = "Colour", r = 0, g = 0, b = 255 }
+display = { mode = "Image", file = "../streamdeck/icons/windows.png", invert = true }
 
 [automata.states.running]
 on_press = { on_success = "stopped" }
-display = { mode = "Colour", r = 0, g = 255, b = 0 }
+display = { mode = "Image", file = "../streamdeck/icons/windows.png", invert = false }
 
 [automata.states.error]
 on_press = { on_success = "stopped" }
-display = { mode = "Colour", r = 255, g = 0, b = 0 }
+display = { mode = "Image", file = "../streamdeck/icons/windows.png", invert = false, background = { r = 255, g = 0, b = 0} }
 
 
 # An example automata that always fails
