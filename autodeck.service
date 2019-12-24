@@ -1,0 +1,12 @@
+
+[Unit]
+Description=AutoDeck Automator
+
+[Service]
+EnvironmentFile=/etc/autodeck/autodeck.env
+ExecStart=/usr/bin/autodeck
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+

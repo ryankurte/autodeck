@@ -7,26 +7,34 @@ addons:
     packages:
     - libusb-1.0
     - libusb-dev
+    
 install:
 - cargo fetch
 - rustup target add armv7-unknown-linux-gnueabihf
 - rustup component add rustfmt
+- cargo install cargo-deb
+
 script:
-- cargo build && cargo test && cargo build --target=$TARGET --release
+- cargo build && cargo test && cargo build --target=$TARGET --release && cargo deb --no-build
+
 before_deploy:
 - tar -cvf target/autodeck-$TARGET-$TRAVIS_TAG.tgz -C target/$TARGET/release/ autodeck
-notifications:
-  email:
-    on_success: never
-    on_failure: never
+
 deploy:
   provider: releases
   api_key:
     secure: mA70kdDMOVFCy5ATWSzQXY3ktzJc2RNLiMqkLw3RlM61IS/9WKu3Cs+wjhXGpoOUfuokMCMQ3owG0/UIuVezc/ee/fb5mHARaZfPLoJZZon5rU+tdhORB97OKl7Xh5cqUKCoeAtPStflFpTry7EZVgyHaRIm6h3h5pU3kPIPd+i1FiuewNBLQebas7aCvN8j01jUZA4WAWt32Q22perqBS1fMZIhGo+GzcJUL3EewmCeBKfefYBvkx8lzX19+xS2/vFadFUnyCn13+etDdSU2n7JKfhLiSf+Z9R/z8JEUyoP4GHDsDel/oGmWyfIIKvGCQtwNabVBXEqHneg16kUnLPx3zEDZtDqDnbkmckt9DZumuSHQKmREbLBJ4Ex2IvvFPjm7LLfz3UCXF2OccUEfuMjQXjQApb0qgCKFJ4e5cXaylrcsmfFRg22mC79to5WAZQjub22MFbs2dMZfl2SoS0iwDdZDxMRmTsI/yRliibTvt19OQIcAtIHqkVQ9glJ23ntWl08mic6Rn3nUW5/UD5M1X3kO5y2KoUybL0CfwwbJsh1VBI4k2Bz2QLd+Gi4HaGas0AOx8GdX4UdPxvMhYzST874ItHOkXiCTBSfbhfj9PUWcbIh0T96YJHLG314Q1R3W7KTVC8Dcj/cye8BB2M/Uc7tRGMdpDV4Hgf4NOI=
-  file: target/*.tgz
+  file: 
+    - target/*.tgz
+    - target/*.deb
   file_glob: true
   skip_cleanup: true
   on:
     tags: true
     repo: ryankurte/autodeck
+  
+notifications:
+  email:
+    on_success: never
+    on_failure: never
   

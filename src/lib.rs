@@ -29,7 +29,7 @@ pub struct Options {
     /// Period for blocking polling of input device
     block_period: Duration,
 
-    #[structopt(long, default_value="1m", env="POLL_PERIOD")]
+    #[structopt(long, default_value="5m", env="POLL_PERIOD")]
     /// Period for running automata update functions
     poll_period: Duration,
 }

@@ -1,0 +1,42 @@
+# Basic example automation
+
+[[automata]]
+state = "stopped"
+
+[automata.states.stopped]
+display = { mode = "Colour", r = 0, g = 0, b = 10 }
+
+
+[[automata]]
+state = "stopped"
+
+[automata.states.stopped]
+display = { mode = "Colour", r = 0, g = 0, b = 10 }
+
+
+[[automata]]
+state = "stopped"
+
+[automata.states.stopped]
+display = { mode = "Colour", r = 0, g = 0, b = 10 }
+
+
+[[automata]]
+state = "stopped"
+
+[automata.states.stopped]
+display = { mode = "Colour", r = 0, g = 0, b = 10 }
+
+
+[[automata]]
+state = "stopped"
+
+[automata.states.stopped]
+display = { mode = "Colour", r = 0, g = 0, b = 10 }
+
+
+[[automata]]
+state = "stopped"
+
+[automata.states.stopped]
+display = { mode = "Colour", r = 0, g = 0, b = 10 }
