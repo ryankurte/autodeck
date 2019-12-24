@@ -19,7 +19,7 @@ use autodeck::{Automation, Options};
 #[structopt(name = "autodeck", about = "An Elgato StreamDeck based automation daemon")]
 struct CliOptions {
 
-    #[structopt(short, long, default_value="/etc/autodeck/autodeck.toml")]
+    #[structopt(short, long, default_value="/etc/autodeck/autodeck.toml", env="CONFIG_FILE")]
     /// Automation definition file
     config_file: String,
 
@@ -29,10 +29,10 @@ struct CliOptions {
     #[structopt(flatten)]
     automate: Options,
 
-    #[structopt(long = "log-level", default_value = "info")]
+    #[structopt(long = "log-level", default_value = "info", env="LOG_LEVEL")]
     /// Enable verbose logging
     level: LevelFilter,
-    
+
 }
 
 fn main() {

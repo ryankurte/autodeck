@@ -4,6 +4,7 @@ Description=AutoDeck Automator
 
 [Service]
 EnvironmentFile=/etc/autodeck/autodeck.env
+WorkingDirectory=/etc/autodeck/
 ExecStart=/usr/bin/autodeck
 Restart=on-failure
 

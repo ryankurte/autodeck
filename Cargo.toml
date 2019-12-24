@@ -25,8 +25,10 @@ depends = "$auto, systemd, openssl"
 assets = [
     ["target/release/autodeck", "/usr/bin/autodeck", "0755"],
     ["basic.toml", "/etc/autodeck/autodeck.toml", "0644"],
+    ["autodeck.env", "/etc/autodeck/autodeck.env", "0644"],
     ["autodeck.service", "/lib/systemd/system/autodeck.service", "0644"],
 ]
 conf-files = [
   "/etc/autodeck/autodeck.toml",
+  "/etc/autodeck/autodeck.env",
 ]
