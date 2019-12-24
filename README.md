@@ -2,6 +2,7 @@
 
 A simple automation daemon designed to interact with Elgato Stream Deck devices. See [example.toml](./example.toml) for a set of example automations, and the [docs](https://docs.rs/autodeck) for further information on automation options.
 
+
 ## Status
 
 WIP, basic functionality working, tested only with a stream deck mini, pull requests welcome.
@@ -11,7 +12,19 @@ WIP, basic functionality working, tested only with a stream deck mini, pull requ
 [![Crates.io](https://img.shields.io/crates/v/autodeck.svg)](https://crates.io/crates/autodeck)
 [![Docs.rs](https://docs.rs/autodeck/badge.svg)](https://docs.rs/autodeck)
 
+
 ## Usage
+
+### Installation
+
+Precompiled binaries are available on the [releases](https://github.com/ryankurte/autodeck/releases) page (including a .deb that will install configuration files and a systemd unit). The utility can also be installed from source using `cargo install autodeck`, but you'll need to manage the configuration files etc. by yourself.
+
+For the debian package, automations are specified in `/etc/autodeck/autodeck.toml` with configuration in `/etc/autodeck/autodeck.env`.
+
+You can register the service at startup with `sudo systemctl enable autodeck`, and check the logs with `sudo journalctl -u autodeck --follow`.
+
+
+### Automation Files
 
 An automation file consists of a list of `[[automata]]`, each corresponding to a single button on a stream deck.
 These `automata` have a `state` field describing their intitial state, as well as an `on_init` executor.

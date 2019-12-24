@@ -15,7 +15,7 @@ install:
 - cargo install cargo-deb || true
 
 script:
-- cargo build && cargo test && cargo build --target=$TARGET --release && cargo deb --target=$TARGET 
+- cargo build && cargo test && cargo build --target=$TARGET --release && cargo deb --target=$TARGET --no-build
 
 before_deploy:
 - tar -cvf target/autodeck-$TARGET-$TRAVIS_TAG.tgz -C target/$TARGET/release/ autodeck
