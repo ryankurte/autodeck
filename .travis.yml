@@ -14,8 +14,7 @@ install:
 script:
 - cargo build && cargo test && cargo build --target=$TARGET --release
 before_deploy:
-- tar -cvf target/autodeck-$TARGET-$TRAVIS_TAG.tgz -C target/$TARGET/release/
-  autodeck
+- tar -cvf target/autodeck-$TARGET-$TRAVIS_TAG.tgz -C target/$TARGET/release/ autodeck
 notifications:
   email:
     on_success: never
@@ -23,10 +22,11 @@ notifications:
 deploy:
   provider: releases
   api_key:
-    secure: Ckf1VexYqDxEjJF/0XfCKQzypY92+yv2ZBLz6U+yoSQXFixKCAgjxbtuyR4nVr43sGwB9GPKSLXyqpfMrnbWdp67jU/QgB19hn+7+u6WGXhEKKq2fpgnl9SwXLcfLtdhEgRoB7YmlPONfTFgPe/u4lfrC3XH3AxsaYC1T/RVer3G+mCuode++2H9qh4LwZjhjwFRf1QpF6tAUG4v2IWL6z5ZOgkKW9/ynZ7w92GMKj75Kb8qmvhZQ4IKcswue33eM1DErccEIvrDG9eAPfNhcSpRJTOsKM5EBgDMFgJlZV10EdhJV8PpNv3AIVfIPjXr8ooLCAeomRJyXs8lxXvc4pfh66jKnkmZ9yR5WHCNI2GOPzqb0pbCho1B5ZL0y0et3VScVW8KoPsEQxoDiK+JddzNdjjz0s4WGlICkIwaTckXPKXMtU5NeyM9qRwg7MccNx7x6DEFHZSYa5/I3oF5fg7SujE2zGtp7rfU0t+qwWnAPoSu3UpJhoWv8DJU2BtdzF30Lg6xSRnSj7kjQbjJYCd6R3cU/Hkp2/33M2Wsb4rCMfH6TcfJh6DLfS/g7q9hG6OTqMifjyDbN3kG038QBJTcUZDw+Vz/M7gMtiWCFiptvGvIof36/UhGaVpJztVz/99ATaqiAbwxPsdUou0wyGsLT3Bmz27J+WFpoRAeLIo=
+    secure: mA70kdDMOVFCy5ATWSzQXY3ktzJc2RNLiMqkLw3RlM61IS/9WKu3Cs+wjhXGpoOUfuokMCMQ3owG0/UIuVezc/ee/fb5mHARaZfPLoJZZon5rU+tdhORB97OKl7Xh5cqUKCoeAtPStflFpTry7EZVgyHaRIm6h3h5pU3kPIPd+i1FiuewNBLQebas7aCvN8j01jUZA4WAWt32Q22perqBS1fMZIhGo+GzcJUL3EewmCeBKfefYBvkx8lzX19+xS2/vFadFUnyCn13+etDdSU2n7JKfhLiSf+Z9R/z8JEUyoP4GHDsDel/oGmWyfIIKvGCQtwNabVBXEqHneg16kUnLPx3zEDZtDqDnbkmckt9DZumuSHQKmREbLBJ4Ex2IvvFPjm7LLfz3UCXF2OccUEfuMjQXjQApb0qgCKFJ4e5cXaylrcsmfFRg22mC79to5WAZQjub22MFbs2dMZfl2SoS0iwDdZDxMRmTsI/yRliibTvt19OQIcAtIHqkVQ9glJ23ntWl08mic6Rn3nUW5/UD5M1X3kO5y2KoUybL0CfwwbJsh1VBI4k2Bz2QLd+Gi4HaGas0AOx8GdX4UdPxvMhYzST874ItHOkXiCTBSfbhfj9PUWcbIh0T96YJHLG314Q1R3W7KTVC8Dcj/cye8BB2M/Uc7tRGMdpDV4Hgf4NOI=
   file: target/*.tgz
   file_glob: true
   skip_cleanup: true
   on:
     tags: true
     repo: ryankurte/autodeck
+  
